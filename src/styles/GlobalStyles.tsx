@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     :root {
@@ -21,4 +21,13 @@ export const GlobalStyle = createGlobalStyle`
     a:hover{
         cursor: pointer;
     }
+`;
+
+export const Container = styled.div`
+  display: flex;
+`;
+
+export const Subcontainer = styled.div`
+  width: 100%;
+  min-width: 320px;
 `;

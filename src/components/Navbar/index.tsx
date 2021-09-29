@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { toggleShoppingCart } from "../../context/generalSlice";
+import { useStateDispatch } from "../../context/hooks";
 import { Nav, Search } from "./styles";
 
 export const Navbar = () => {
   const [searchFocus, setSearchFocus] = useState<Boolean>(false);
+
+  const dispatch = useStateDispatch();
 
   const onFocusSearch = () => {
     setSearchFocus(true);
@@ -15,7 +19,14 @@ export const Navbar = () => {
   return (
     <Nav>
       <div className="nav-left">
-        <img className="menu-icon" src="icons/menu_icon.svg" alt="menu icon" />
+        <img
+          className="menu-icon"
+          src="icons/menu_icon.svg"
+          alt="menu icon"
+          onClick={() => {
+            dispatch(toggleShoppingCart());
+          }}
+        />
         <span className="nav-logo">Chukwudi</span>
       </div>
       <div className="nav-right">
