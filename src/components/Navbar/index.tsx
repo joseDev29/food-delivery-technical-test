@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { toggleShoppingCart } from "../../context/generalSlice";
-import { useStateDispatch } from "../../context/hooks";
+import {
+  selectShoppingCartList,
+  toggleShoppingCart,
+} from "../../context/generalSlice";
+import { useStateDispatch, useStateSelector } from "../../context/hooks";
 import { Nav, Search } from "./styles";
 
 export const Navbar = () => {
   const [searchFocus, setSearchFocus] = useState<Boolean>(false);
 
+  const cartItems = useStateSelector(selectShoppingCartList);
   const dispatch = useStateDispatch();
 
   const onFocusSearch = () => {
@@ -19,14 +23,15 @@ export const Navbar = () => {
   return (
     <Nav>
       <div className="nav-left">
-        <img
+        <div
           className="menu-icon"
-          src="icons/menu_icon.svg"
-          alt="menu icon"
           onClick={() => {
             dispatch(toggleShoppingCart());
           }}
-        />
+        >
+          <span className="material-icons-round">shopping_cart</span>
+          <p>{cartItems.length}</p>
+        </div>
         <span className="nav-logo">Chukwudi</span>
       </div>
       <div className="nav-right">

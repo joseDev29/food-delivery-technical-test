@@ -24,9 +24,27 @@ export const Nav = styled.nav`
   }
 
   && .menu-icon {
-    width: 25px;
-    height: 25px;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 6px;
+    margin-right: 8px;
+    border-radius: 8px;
+    background-color: #f7d074;
+  }
+
+  && .menu-icon > span {
+    font-size: 2rem;
+    margin-right: 4px;
+  }
+
+  && .menu-icon > p {
+    width: 24px;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    background-color: #fff;
   }
 
   && .menu-icon:hover {
@@ -34,7 +52,8 @@ export const Nav = styled.nav`
   }
 
   && .nav-logo {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    line-height: 2.2rem;
     font-weight: 700;
   }
 

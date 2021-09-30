@@ -53,6 +53,7 @@ export const AuthSectionContainer = styled.div`
   && .auth-username {
     font-size: 1.4rem;
     font-weight: 600;
+    text-align: center;
   }
 
   && .auth-logout-btn {

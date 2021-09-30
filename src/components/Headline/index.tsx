@@ -12,10 +12,10 @@ export const Headline = () => {
         <h5>$0 delivery fee for orders over 10$ for 30 days!</h5>
       </div>
 
-      <a className="headline-link" href="">
+      <span className="headline-link">
         Learn more
         <span className="material-icons-round">arrow_forward</span>
-      </a>
+      </span>
     </HeadlineContainer>
   );
 };
