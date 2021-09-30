@@ -2,19 +2,52 @@ import styled from "styled-components";
 
 export const CategoriesContainer = styled.div`
   width: 95%;
-  height: 140px;
-  padding: 10px 0;
   margin: 48px auto 0;
   display: flex;
-  //overflow: scroll hidden;
-  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+
+  && .categories-button {
+    width: 6%;
+    max-width: 35px;
+    height: 40px;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  && .categories-button:hover {
+    cursor: pointer;
+  }
+
+  && .categories-button-left {
+    border-radius: 12px 4px 4px 12px;
+  }
+
+  && .categories-button-right {
+    border-radius: 4px 12px 12px 4px;
+  }
+`;
+
+export const CategoryListContainer = styled.div`
+  width: 85%;
+  max-width: max-content;
+  padding: 32px 0;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 `;
 
 export const CategoryItem = styled.div`
   width: 60px;
   min-width: 60px;
-  height: 100%;
-  margin-right: 12px;
+  height: 120px;
+  margin-left: 12px;
   border-radius: 30px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.06);
   cursor: pointer;
@@ -22,6 +55,11 @@ export const CategoryItem = styled.div`
   transition-duration: 0.5s;
   transition-timing-function: ease;
   transition-delay: 0;
+  background-color: #fff;
+
+  &.categories-no-margin-left {
+    margin-left: 0;
+  }
 
   && .category-item-top {
     width: 100%;

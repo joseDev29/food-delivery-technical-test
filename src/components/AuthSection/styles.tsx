@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const AuthSectionContainer = styled.div`
   width: 100%;
-  margin-top: 32px;
+  height: 80px;
   display: flex;
   align-items: center;
   padding: 0 24px;

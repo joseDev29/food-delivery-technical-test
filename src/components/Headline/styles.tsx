@@ -51,6 +51,11 @@ export const HeadlineContainer = styled.div`
     font-size: 1.2rem;
     font-weight: 700;
     color: #eb703b;
+    user-select: none;
+  }
+
+  && .headline-link:hover {
+    cursor: pointer;
   }
 
   && .headline-link > span {

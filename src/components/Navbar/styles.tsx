@@ -1,8 +1,9 @@
 import styled, { css } from "styled-components";
 
 export const Nav = styled.nav`
-  width: 100%;
+  width: 95%;
   height: 100px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 
@@ -10,7 +11,6 @@ export const Nav = styled.nav`
     width: 100%;
     height: 50%;
     display: flex;
-    padding: 0 2.5%;
     justify-content: space-between;
     align-items: center;
   }
@@ -40,7 +40,7 @@ export const Nav = styled.nav`
 
   @media (min-width: 600px) {
     height: 65px;
-    padding: 0 2%;
+
     flex-direction: row;
     justify-content: space-between;
 
@@ -60,7 +60,7 @@ export const Nav = styled.nav`
 `;
 
 export const Search = styled.div<any>`
-  width: 95%;
+  width: 100%;
   height: 45px;
   min-width: 300px;
   display: flex;

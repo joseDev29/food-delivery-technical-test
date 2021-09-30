@@ -26,7 +26,7 @@ export const AuthSection = () => {
         </>
       ) : (
         <>
-          <p className="no-auth-text">Inicia sesion</p>
+          <p className="no-auth-text">Login with</p>
           <span
             className="no-auth-icon g-icon"
             onClick={signInWithGoogle}

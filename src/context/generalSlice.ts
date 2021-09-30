@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Category, Products, User } from "../interfaces";
+import { Category, Product, ShoppingCartItem, User } from "../interfaces";
 import { RootState } from "./store";
 
 export interface GeneralState {
   categories: Category[];
-  products: Products[];
+  products: Product[];
   user: User | null;
+  shoppingCartList: ShoppingCartItem[];
   shoppingCartActive: boolean;
+  orderValue: number;
 }
 
 const initialState = {
@@ -127,7 +129,9 @@ const initialState = {
     },
   ],
   user: null,
+  shoppingCartList: [],
   shoppingCartActive: false,
+  orderValue: 0,
 } as GeneralState;
 
 export const generalSlice = createSlice({
@@ -142,15 +146,84 @@ export const generalSlice = createSlice({
         ? (state.shoppingCartActive = false)
         : (state.shoppingCartActive = true);
     },
+    addToShoppingCart: (
+      state,
+      action: PayloadAction<{
+        id: number;
+        name: string;
+        price: number;
+        image: string;
+      }>
+    ) => {
+      let exists = false;
+
+      for (let item of state.shoppingCartList) {
+        if (item.id === action.payload.id) {
+          item.count += 1;
+          item.total = item.price * item.count;
+          exists = true;
+          break;
+        }
+      }
+
+      if (!exists) {
+        state.shoppingCartList.push({
+          ...action.payload,
+          count: 1,
+          total: action.payload.price,
+        });
+      }
+
+      let orderValue = 0;
+      state.shoppingCartList.forEach(
+        (item) => (orderValue += item.count * item.price)
+      );
+      state.orderValue = orderValue;
+    },
+
+    removeToShoppingCart: (state, action: PayloadAction<number>) => {
+      for (let i = 0; i < state.shoppingCartList.length; i++) {
+        if (state.shoppingCartList[i].id === action.payload) {
+          state.shoppingCartList[i].count -= 1;
+          state.shoppingCartList[i].total -= state.shoppingCartList[i].price;
+
+          if (state.shoppingCartList[i].count <= 0) {
+            state.shoppingCartList = [
+              ...state.shoppingCartList.slice(0, i),
+              ...state.shoppingCartList.slice(
+                i + 1,
+                state.shoppingCartList.length
+              ),
+            ];
+          }
+
+          let orderValue = 0;
+          state.shoppingCartList.forEach(
+            (item) => (orderValue += item.count * item.price)
+          );
+          state.orderValue = orderValue;
+
+          break;
+        }
+      }
+    },
   },
 });
 
-export const { changeAuth, toggleShoppingCart } = generalSlice.actions;
+export const {
+  changeAuth,
+  toggleShoppingCart,
+  addToShoppingCart,
+  removeToShoppingCart,
+} = generalSlice.actions;
 
 export const selectCategories = (state: RootState) => state.general.categories;
 export const selectProducts = (state: RootState) => state.general.products;
 export const selectUser = (state: RootState) => state.general.user;
 export const selectShoppingCartActive = (state: RootState) =>
   state.general.shoppingCartActive;
+export const selectShoppingCartList = (state: RootState) =>
+  state.general.shoppingCartList;
+export const selectOrderValue = (state: RootState) => state.general.orderValue;
 
 export default generalSlice.reducer;

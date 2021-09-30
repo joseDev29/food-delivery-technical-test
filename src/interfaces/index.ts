@@ -4,7 +4,7 @@ export interface Category {
   icon: string;
 }
 
-export interface Products {
+export interface Product {
   id: number;
   name: string;
   qualification: number;
@@ -16,4 +16,13 @@ export interface Products {
 export interface User {
   name: string | null;
   image: string | null;
+}
+
+export interface ShoppingCartItem {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  total: number;
+  count: number;
 }
